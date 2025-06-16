@@ -2571,6 +2571,7 @@ name = "jito-shredstream-proxy"
 version = "0.2.5"
 dependencies = [
  "arc-swap",
+ "base64 0.22.1",
  "bincode",
  "borsh 1.5.6",
  "clap",
@@ -2593,8 +2594,10 @@ dependencies = [
  "solana-metrics 2.2.1",
  "solana-net-utils",
  "solana-perf 2.2.1",
+ "solana-program",
  "solana-sdk",
  "solana-streamer",
+ "spl-token 8.0.0",
  "thiserror 1.0.69",
  "tokio",
  "tonic 0.10.2",
@@ -4676,7 +4679,7 @@ dependencies = [
  "solana-slot-hashes",
  "solana-slot-history",
  "solana-sysvar",
- "spl-token",
+ "spl-token 7.0.0",
  "spl-token-2022 7.0.0",
  "spl-token-group-interface",
  "spl-token-metadata-interface",
@@ -5894,7 +5897,7 @@ dependencies = [
  "solana-transaction-status",
  "solana-vote",
  "solana-vote-program 2.2.0",
- "spl-token",
+ "spl-token 7.0.0",
  "spl-token-2022 7.0.0",
  "static_assertions",
  "strum",
@@ -7870,7 +7873,7 @@ dependencies = [
  "solana-transaction-status-client-types 2.2.0",
  "spl-associated-token-account",
  "spl-memo",
- "spl-token",
+ "spl-token 7.0.0",
  "spl-token-2022 7.0.0",
  "spl-token-group-interface",
  "spl-token-metadata-interface",
@@ -8280,7 +8283,7 @@ dependencies = [
  "num-traits",
  "solana-program",
  "spl-associated-token-account-client",
- "spl-token",
+ "spl-token 7.0.0",
  "spl-token-2022 6.0.0",
  "thiserror 1.0.69",
 ]
@@ -8441,6 +8444,34 @@ dependencies = [
 ]
 
 [[package]]
+name = "spl-token"
+version = "8.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "053067c6a82c705004f91dae058b11b4780407e9ccd6799dc9e7d0fab5f242da"
+dependencies = [
+ "arrayref",
+ "bytemuck",
+ "num-derive",
+ "num-traits",
+ "num_enum",
+ "solana-account-info",
+ "solana-cpi",
+ "solana-decode-error",
+ "solana-instruction",
+ "solana-msg",
+ "solana-program-entrypoint",
+ "solana-program-error",
+ "solana-program-memory",
+ "solana-program-option",
+ "solana-program-pack",
+ "solana-pubkey",
+ "solana-rent",
+ "solana-sdk-ids",
+ "solana-sysvar",
+ "thiserror 2.0.12",
+]
+
+[[package]]
 name = "spl-token-2022"
 version = "6.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -8457,7 +8488,7 @@ dependencies = [
  "spl-elgamal-registry",
  "spl-memo",
  "spl-pod",
- "spl-token",
+ "spl-token 7.0.0",
  "spl-token-confidential-transfer-ciphertext-arithmetic",
  "spl-token-confidential-transfer-proof-extraction",
  "spl-token-confidential-transfer-proof-generation 0.2.0",
@@ -8485,7 +8516,7 @@ dependencies = [
  "spl-elgamal-registry",
  "spl-memo",
  "spl-pod",
- "spl-token",
+ "spl-token 7.0.0",
  "spl-token-confidential-transfer-ciphertext-arithmetic",
  "spl-token-confidential-transfer-proof-extraction",
  "spl-token-confidential-transfer-proof-generation 0.3.0",

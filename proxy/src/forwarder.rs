@@ -176,7 +176,7 @@ fn recv_from_channel_and_send_multiple_dest(
         Slot,
         HashMap<u32 /* fec_set_index */, (bool /* completed */, HashSet<ComparableShred>)>,
     >,
-    deshredded_entries: &mut Vec<(Slot, Vec<solana_entry::entry::Entry>, Vec<u8>)>,
+    deshredded_entries: &mut Vec<(Slot, Vec<std::string::String>)>,
     rs_cache: &ReedSolomonCache,
     send_socket: &UdpSocket,
     local_dest_sockets: &[SocketAddr],
@@ -270,7 +270,7 @@ fn recv_from_channel_and_send_multiple_dest(
 
         deshredded_entries
             .drain(..)
-            .for_each(|(slot, _entries, entries_bytes)| {
+            .for_each(|(slot, entries_bytes)| {
                 let _ = entry_sender.send(PbEntry {
                     slot,
                     entries: entries_bytes,
@@ -278,25 +278,25 @@ fn recv_from_channel_and_send_multiple_dest(
             });
     }
 
-    // Count TraceShred shreds
-    if debug_trace_shred {
-        packet_batch_vec[0]
-            .iter()
-            .filter_map(|p| TraceShred::decode(p.data(..)?).ok())
-            .filter(|t| t.created_at.is_some())
-            .for_each(|trace_shred| {
-                let elapsed = trace_shred_received_time
-                    .duration_since(SystemTime::try_from(trace_shred.created_at.unwrap()).unwrap())
-                    .unwrap_or_default();
+    // // Count TraceShred shreds
+    // if debug_trace_shred {
+    //     packet_batch_vec[0]
+    //         .iter()
+    //         .filter_map(|p| TraceShred::decode(p.data(..)?).ok())
+    //         .filter(|t| t.created_at.is_some())
+    //         .for_each(|trace_shred| {
+    //             let elapsed = trace_shred_received_time
+    //                 .duration_since(SystemTime::try_from(trace_shred.created_at.unwrap()).unwrap())
+    //                 .unwrap_or_default();
 
-                datapoint_info!(
-                    "shredstream_proxy-trace_shred_latency",
-                    "trace_region" => trace_shred.region,
-                    ("trace_seq_num", trace_shred.seq_num as i64, i64),
-                    ("elapsed_micros", elapsed.as_micros(), i64),
-                );
-            });
-    }
+    //             datapoint_info!(
+    //                 "shredstream_proxy-trace_shred_latency",
+    //                 "trace_region" => trace_shred.region,
+    //                 ("trace_seq_num", trace_shred.seq_num as i64, i64),
+    //                 ("elapsed_micros", elapsed.as_micros(), i64),
+    //             );
+    //         });
+    // }
 
     Ok(())
 }

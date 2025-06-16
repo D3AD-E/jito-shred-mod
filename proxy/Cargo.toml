@@ -35,3 +35,6 @@ solana-streamer = { workspace = true }
 thiserror = { workspace = true }
 tokio = { workspace = true }
 tonic = { workspace = true }
+solana-program = "2.2.1" 
+spl-token = { version = "8.0.0", features = ["no-entrypoint"] } 
+base64 = "0.22"
