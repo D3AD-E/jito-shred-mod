@@ -1,8 +1,6 @@
 # Jito Shredstream Proxy
 
-ShredStream provides the lowest latency to shreds from leaders on Solana. 
-
-See more at https://docs.jito.wtf/lowlatencytxnfeed/
+Modified Jito Shredstream proxy to deshred only pump.fun token creations with support for js engine to decode the data.
 
 ## Disclaimer
 Use this at your own risk.
